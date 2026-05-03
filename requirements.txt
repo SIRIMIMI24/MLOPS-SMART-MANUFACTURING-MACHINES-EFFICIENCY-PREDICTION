@@ -11,3 +11,14 @@ kfp==1.8.22
 xgboost
 lightgbm
 kagglehub
+torch
+opencv-python-headless
+torchvision
+torchaudio
+tensorboard
+dvc
+fastapi[all]
+uvicorn
+Pillow
+matplotlib
+albumentations
