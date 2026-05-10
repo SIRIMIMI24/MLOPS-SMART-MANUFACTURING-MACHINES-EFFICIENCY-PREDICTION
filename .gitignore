@@ -7,8 +7,22 @@ __pycache__/
 *.egg-info/
 mlflow_setup.txt
 
-# 3. Artifacts (Ignore ทั้งโฟลเดอร์)
-artifacts/
+# 3. Data, Artifacts, and Model Outputs
+artifacts/*
+!artifacts/raw/
+!artifacts/raw/.gitkeep
+artifacts/raw/*
+!artifacts/raw/.gitkeep
+!artifacts/processed/
+!artifacts/processed/.gitkeep
+artifacts/processed/*
+!artifacts/processed/.gitkeep
+data/raw/*
+!data/raw/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+models/*
+!models/.gitkeep
 logs/
 
 # 4. Notebook Outputs & Data (ใช้ Wildcards)

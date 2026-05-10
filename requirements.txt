@@ -11,6 +11,7 @@ kfp==1.8.22
 xgboost
 lightgbm
 kagglehub
+pytest
 torch
 opencv-python-headless
 torchvision

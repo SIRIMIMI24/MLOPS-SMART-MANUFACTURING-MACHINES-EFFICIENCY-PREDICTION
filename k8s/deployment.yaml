@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: smart-manufacturing-app
+  namespace: smart-manufacturing
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: smart-manufacturing-app
+  template:
+    metadata:
+      labels:
+        app: smart-manufacturing-app
+    spec:
+      containers:
+        - name: smart-manufacturing-app
+          image: smart-manufacturing-mlops:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5000

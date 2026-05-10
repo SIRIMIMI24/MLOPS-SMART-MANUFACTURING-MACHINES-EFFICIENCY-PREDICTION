@@ -1,0 +1,13 @@
+project:
+  name: smart-manufacturing-mlops
+  phase: 1
+
+data:
+  raw_dir: data/raw
+  processed_dir: data/processed
+  artifact_raw_dir: artifacts/raw
+  artifact_processed_dir: artifacts/processed
+
+model:
+  random_state: 42
+  artifact_path: models/model.pkl
