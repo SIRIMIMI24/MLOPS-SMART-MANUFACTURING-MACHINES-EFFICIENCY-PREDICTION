@@ -17,3 +17,81 @@ git add filename.py
 git commit -m "Add deep learning notebook for IBM ML course"
 git commit -m "Fix data preprocessing pipeline in Google Analytics module"
 git push origin main
+
+-- การทำให้ Project ของเราตรงกับ Version ล่าสุดที่เพื่อน Update ขึ้น Git คือการ pull code ล่าสุดจาก Remote 
+-- Repository ลงมาที่เครื่องเรา. หลักสำคัญคือก่อนดึง code ต้องเช็กก่อนว่าเครื่องเรามีไฟล์ที่แก้ค้างไว้ไหม เพื่อป้องกัน code หายหรือ conflict. 
+-- ถ้าเราไม่ได้แก้อะไรในเครื่อง สามารถใช้ git pull ได้ตรง ๆ. แต่ถ้าเราแก้ code ไว้ด้วย ต้องเลือกว่าจะ commit, stash, หรือ discard ก่อนดึง version ล่าสุด.
+
+Case 1: เราไม่ได้แก้ code อะไรในเครื่อง
+- git pull origin main
+
+Case 2: เรามีแก้ code ค้างไว้ แต่ยังไม่อยาก commit
+git status
+git stash
+git pull origin main
+git stash pop
+
+git stash      = เก็บ code ที่เราแก้ไว้ก่อน
+git pull       = ดึง code ล่าสุดจาก Git
+git stash pop  = เอา code ที่เราเก็บไว้กลับมา
+
+Case 3: เราแก้ code แล้วอยากเก็บเป็น version ของเรา
+git add .
+git commit -m "update my local changes"
+git pull origin main
+
+
+ถ้าฉันอยาก Run Update Project ที่เพื่อนพึง Update Code ไปยัง Git ให้ version เดียวกันทำยังไง
+
+Thought for a couple of seconds
+การทำให้ Project ของเราตรงกับ Version ล่าสุดที่เพื่อน Update ขึ้น Git คือการ pull code ล่าสุดจาก Remote Repository ลงมาที่เครื่องเรา. หลักสำคัญคือก่อนดึง code ต้องเช็กก่อนว่าเครื่องเรามีไฟล์ที่แก้ค้างไว้ไหม เพื่อป้องกัน code หายหรือ conflict. ถ้าเราไม่ได้แก้อะไรในเครื่อง สามารถใช้ git pull ได้ตรง ๆ. แต่ถ้าเราแก้ code ไว้ด้วย ต้องเลือกว่าจะ commit, stash, หรือ discard ก่อนดึง version ล่าสุด.
+
+วิธี Run Update Project ให้เป็น Version เดียวกับเพื่อน
+เข้าไปที่โฟลเดอร์ Project ก่อน เช่น
+
+cd path/to/your/project
+จากนั้นเช็กสถานะก่อนเสมอ
+
+git status
+Case 1: เราไม่ได้แก้ code อะไรในเครื่อง
+ถ้า git status ขึ้นประมาณนี้:
+
+nothing to commit, working tree clean
+ให้ดึง code ล่าสุดได้เลย
+
+git pull
+หรือระบุ branch ชัด ๆ เช่น branch หลักคือ main
+
+git pull origin main
+ถ้า project ใช้ branch master
+
+git pull origin master
+หลังจากนั้น code ในเครื่องเราจะ update ตาม version ล่าสุดบน Git
+
+Case 2: เรามีแก้ code ค้างไว้ แต่ยังไม่อยาก commit
+ใช้ stash เก็บงานเราไว้ชั่วคราวก่อน
+
+git status
+git stash
+git pull origin main
+git stash pop
+ความหมายคือ:
+
+git stash      = เก็บ code ที่เราแก้ไว้ก่อน
+git pull       = ดึง code ล่าสุดจาก Git
+git stash pop  = เอา code ที่เราเก็บไว้กลับมา
+แต่ถ้าเพื่อนแก้ไฟล์เดียวกับเรา อาจเกิด conflict ได้ ต้องแก้ conflict ต่อ
+
+Case 3: เราแก้ code แล้วอยากเก็บเป็น version ของเรา
+ให้ commit งานเราก่อน แล้วค่อย pull
+
+git add .
+git commit -m "update my local changes"
+git pull origin main
+ถ้ามี conflict ต้องแก้ไฟล์ conflict แล้ว commit อีกรอบ
+git add .
+git commit -m "resolve merge conflict"
+
+Case 4: เราไม่เอา code ที่แก้ในเครื่องแล้ว อยากให้เหมือน Git 100%
+git fetch origin
+git reset --hard origin/main
