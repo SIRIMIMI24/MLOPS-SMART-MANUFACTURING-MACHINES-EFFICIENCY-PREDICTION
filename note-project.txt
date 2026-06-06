@@ -1,3 +1,5 @@
+
+
 1. Create venv -> python -m venv venv
 2. activate venv -> venv\Scripts\activate for mac source venv/bin/activate
 3. instaill libraries -> pip install -e .
